@@ -2,7 +2,6 @@ package com.example.listycity;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -10,11 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Arrays;
