@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">ListyCity</string>
+    <string name="add_city_text">Add City</string>
+    <string name="remove_city_text">Remove City</string>
+    <string name="add_text">Add</string>
+    <string name="city_add_hint_text">the name of the city to add</string>
 </resources>

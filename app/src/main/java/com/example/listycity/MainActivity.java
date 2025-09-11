@@ -3,7 +3,6 @@ package com.example.listycity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,53 +32,41 @@ public class MainActivity extends AppCompatActivity {
 
         final LinearLayout add_city_ui = findViewById(R.id.add_city_ui);
         final Button addCityShowButton = findViewById(R.id.add_city_show);
-        addCityShowButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final int add_city_ui_visibility = add_city_ui.getVisibility();
-                if (add_city_ui_visibility == View.VISIBLE) {
-                    add_city_ui.setVisibility(View.GONE);
-                } else {
-                    add_city_ui.setVisibility(View.VISIBLE);
-                }
+        addCityShowButton.setOnClickListener(v -> {
+            final int add_city_ui_visibility = add_city_ui.getVisibility();
+            if (add_city_ui_visibility == View.VISIBLE) {
+                add_city_ui.setVisibility(View.GONE);
+            } else {
+                add_city_ui.setVisibility(View.VISIBLE);
             }
         });
 
         final Button addCitySubmitButton = findViewById(R.id.add_city_submit);
         final EditText addCityTextInput = findViewById(R.id.add_city_text_input);
-        addCitySubmitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final String newCity = String.valueOf(addCityTextInput.getText());
-                dataList.add(newCity);
-                cityAdapter.notifyDataSetChanged();
-            }
+        addCitySubmitButton.setOnClickListener(v -> {
+            final String newCity = String.valueOf(addCityTextInput.getText());
+            dataList.add(newCity);
+            cityAdapter.notifyDataSetChanged();
         });
 
         final Button removeCitySubmitButton = findViewById(R.id.remove_city_submit);
-        removeCitySubmitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (selectedCityIndex != -1) {
-                    dataList.remove(selectedCityIndex);
-                    cityAdapter.notifyDataSetChanged();
-                    cityList.getChildAt(selectedCityIndex).setBackgroundColor(Color.TRANSPARENT);
-                    selectedCityIndex = -1;
-                    removeCitySubmitButton.setEnabled(false);
-                }
+        removeCitySubmitButton.setOnClickListener(v -> {
+            if (selectedCityIndex != -1) {
+                dataList.remove(selectedCityIndex);
+                cityAdapter.notifyDataSetChanged();
+                cityList.getChildAt(selectedCityIndex).setBackgroundColor(Color.TRANSPARENT);
+                selectedCityIndex = -1;
+                removeCitySubmitButton.setEnabled(false);
             }
         });
 
-        cityList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (selectedCityIndex != -1) {
-                    cityList.getChildAt(selectedCityIndex).setBackgroundColor(Color.TRANSPARENT);
-                }
-                selectedCityIndex = position;
-                view.setBackgroundColor(Color.LTGRAY);
-                removeCitySubmitButton.setEnabled(true);
+        cityList.setOnItemClickListener((parent, view, position, id) -> {
+            if (selectedCityIndex != -1) {
+                cityList.getChildAt(selectedCityIndex).setBackgroundColor(Color.TRANSPARENT);
             }
+            selectedCityIndex = position;
+            view.setBackgroundColor(Color.LTGRAY);
+            removeCitySubmitButton.setEnabled(true);
         });
 
         // Start State
